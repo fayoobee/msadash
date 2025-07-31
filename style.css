@@ -1,0 +1,78 @@
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  color: #002855;
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s ease;
+}
+header {
+  text-align: center;
+  padding: 20px;
+}
+#logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+}
+header h2.title {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+}
+.ayah {
+  font-style: italic;
+}
+.citation {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+.collapsibles {
+  margin: 20px;
+}
+button.collapsible {
+  background-color: #f9f9f9;
+  color: #002855;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s;
+}
+button.collapsible:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 0 10px #ffd700;
+}
+.content {
+  display: none;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border-left: 3px solid gold;
+}
+#task-container > div {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+#toggle-mode {
+  margin-top: 15px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+.night-mode {
+  background-color: #001f3f;
+  color: white;
+}
+.night-mode a {
+  color: white;
+}
+.night-mode .content {
+  background-color: #003366;
+}
