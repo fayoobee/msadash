@@ -1,4 +1,3 @@
-
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: white;
@@ -7,34 +6,44 @@ body {
   padding: 0;
   transition: all 0.5s ease;
 }
+
 header {
   text-align: center;
   padding: 20px;
 }
+
 #logo {
   width: 120px;
   height: auto;
   margin-bottom: 10px;
 }
+
 header h1 {
   font-family: 'Cinzel', serif;
   font-size: 28px;
 }
+
 header h2.title {
   font-family: 'Cinzel', serif;
   font-size: 24px;
 }
+
 .ayah {
   font-style: italic;
 }
+
 .citation {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
 }
+
 .collapsibles {
   margin: 20px;
 }
-button.collapsible {
+
+button.collapsible,
+#toggle-mode,
+.link-button {
   background-color: #f9f9f9;
   color: #002855;
   cursor: pointer;
@@ -44,35 +53,96 @@ button.collapsible {
   font-size: 16px;
   border: none;
   outline: none;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 0 transparent;
 }
-button.collapsible:hover {
+
+button.collapsible:hover,
+#toggle-mode:hover,
+.link-button:hover {
   background-color: #e0e0e0;
-  box-shadow: 0 0 10px #ffd700;
+  box-shadow: 0 0 10px gold;
 }
+
 .content {
   display: none;
   padding: 10px 20px;
   background-color: #f1f1f1;
   border-left: 3px solid gold;
+  border-radius: 8px;
 }
+
 #task-container > div {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
+  border-radius: 10px;
 }
-#toggle-mode {
-  margin-top: 15px;
-  padding: 5px 10px;
-  font-size: 14px;
+
+.task-card {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #e9f3ff;
 }
+
+.task-card:nth-child(even) {
+  background-color: #fff8dc;
+}
+
+/* Night Mode Styling */
 .night-mode {
   background-color: #001f3f;
   color: white;
 }
+
 .night-mode a {
   color: white;
 }
+
 .night-mode .content {
   background-color: #003366;
+  border-left: 3px solid #ffcc00;
+}
+
+.night-mode button.collapsible,
+.night-mode #toggle-mode,
+.night-mode .link-button {
+  background-color: #003366;
+  color: white;
+}
+
+.night-mode button.collapsible:hover,
+.night-mode #toggle-mode:hover,
+.night-mode .link-button:hover {
+  background-color: #002244;
+  box-shadow: 0 0 10px #ffd700;
+}
+
+.night-mode .task-card {
+  background-color: #002e5f;
+}
+
+.night-mode .task-card:nth-child(even) {
+  background-color: #0a1c33;
+}
+
+/* Link Button Styling */
+.link-button {
+  background-color: gold;
+  color: #002855;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.link-button:hover {
+  background-color: #ffcc00;
+  box-shadow: 0 0 10px gold;
 }
