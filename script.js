@@ -25,13 +25,13 @@ function loadCSV(url, callback) {
     .then(res => res.text())
     .then(text => {
       const rows = text.trim().split("\n").map(row => {
-        // Respect commas inside quotes
         const values = [];
         let insideQuote = false;
         let current = '';
         for (const char of row) {
-          if (char === '"') insideQuote = !insideQuote;
-          else if (char === ',' && !insideQuote) {
+          if (char === '"') {
+            insideQuote = !insideQuote;
+          } else if (char === ',' && !insideQuote) {
             values.push(current.trim());
             current = '';
           } else {
@@ -45,19 +45,29 @@ function loadCSV(url, callback) {
     });
 }
 
-// Load Tasks from Sheet
+// Load Tasks from Sheet (with fixed header parsing)
 loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vRlIhPrQcMZgTxrn8iNI5tVgLhpdph4w_bQshFWV3s5ui5LD2JYu2N9ix9_wBdcf3MxPcaHf56vDFzI/pub?gid=887791163&single=true&output=csv", rows => {
   const container = document.getElementById("task-container");
   container.innerHTML = "";
-  const headers = rows[0];
+
+  const headers = rows[0].map(h => h.trim().toLowerCase());
+  const taskNameIdx = headers.indexOf("task name");
+  const assignedToIdx = headers.indexOf("assigned to");
+  const dueDateIdx = headers.indexOf("due date");
+  const progressIdx = headers.indexOf("progress");
+  const deptIdx = headers.indexOf("department");
+
   const tasksByDept = {};
 
   rows.slice(1).forEach(row => {
-    const taskObj = {};
-    headers.forEach((header, i) => taskObj[header] = row[i]);
-    const dept = taskObj["Department"] || "Other";
+    const dept = row[deptIdx] || "Other";
     if (!tasksByDept[dept]) tasksByDept[dept] = [];
-    tasksByDept[dept].push(taskObj);
+    tasksByDept[dept].push({
+      task: row[taskNameIdx] || "No Task",
+      assignedTo: row[assignedToIdx] || "Unassigned",
+      due: row[dueDateIdx] || "No Due Date",
+      progress: row[progressIdx] || "Not started"
+    });
   });
 
   for (const dept in tasksByDept) {
@@ -66,10 +76,10 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vRlIhPrQcMZgTxrn8iNI5tV
     tasksByDept[dept].forEach(task => {
       section.innerHTML += `
         <div class="task-card">
-          <strong>${task["Task Name"]}</strong><br>
-          Assigned to: ${task["Assigned To"]}<br>
-          Due: ${task["Due Date"]}<br>
-          Progress: ${task["Progress"]}
+          <strong>${task.task}</strong><br>
+          Assigned to: ${task.assignedTo}<br>
+          Due: ${task.due}<br>
+          Progress: ${task.progress}
         </div>
       `;
     });
