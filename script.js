@@ -1,4 +1,4 @@
-// Toggle collapsibles
+// Toggle collapsible sections
 function toggleCollapsibles() {
   document.querySelectorAll(".collapsible").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -10,7 +10,7 @@ function toggleCollapsibles() {
 }
 toggleCollapsibles();
 
-// Toggle dark mode and logo
+// Toggle night mode + logo
 document.getElementById("toggle-mode").addEventListener("click", () => {
   document.body.classList.toggle("night-mode");
   const logo = document.getElementById("logo");
@@ -19,7 +19,7 @@ document.getElementById("toggle-mode").addEventListener("click", () => {
     : "msa_logo.png";
 });
 
-// Helper to fetch CSV
+// Helper to load and parse CSV
 function loadCSV(url, callback) {
   fetch(url)
     .then(res => res.text())
@@ -27,59 +27,49 @@ function loadCSV(url, callback) {
       const rows = text.trim().split("\n").map(row => {
         const values = [];
         let insideQuotes = false;
-        let cell = '';
+        let current = "";
         for (let char of row) {
           if (char === '"') {
             insideQuotes = !insideQuotes;
-          } else if (char === ',' && !insideQuotes) {
-            values.push(cell.trim());
-            cell = '';
+          } else if (char === "," && !insideQuotes) {
+            values.push(current.trim());
+            current = "";
           } else {
-            cell += char;
+            current += char;
           }
         }
-        values.push(cell.trim());
+        values.push(current.trim());
         return values;
       });
       callback(rows);
     });
 }
 
-// === Load the full document CSV ===
-loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vRlIhPrQcMZgTxrn8iNI5tVgLhpdph4w_bQshFWV3s5ui5LD2JYu2N9ix9_wBdcf3MxPcaHf56vDFzI/pub?output=csv", rows => {
+// === Load TASKS ===
+loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=31970795&single=true&output=csv", rows => {
+  const container = document.getElementById("task-container");
+  container.innerHTML = "";
   const headers = rows[0].map(h => h.trim().toLowerCase());
+
   const taskNameIdx = headers.indexOf("task name");
   const assignedToIdx = headers.indexOf("assigned to");
   const dueDateIdx = headers.indexOf("due date");
   const progressIdx = headers.indexOf("progress");
   const deptIdx = headers.indexOf("department");
-  const typeIdx = headers.indexOf("type");
 
   const tasksByDept = {};
-  const countdowns = [];
-  const teamRoles = [];
 
   rows.slice(1).forEach(row => {
-    const type = row[typeIdx]?.toLowerCase();
-    if (type === "task") {
-      const dept = row[deptIdx] || "Other";
-      if (!tasksByDept[dept]) tasksByDept[dept] = [];
-      tasksByDept[dept].push({
-        task: row[taskNameIdx] || "No Task",
-        assignedTo: row[assignedToIdx] || "Unassigned",
-        due: row[dueDateIdx] || "No Due Date",
-        progress: row[progressIdx] || "Not started"
-      });
-    } else if (type === "countdown") {
-      countdowns.push({ event: row[taskNameIdx], date: row[dueDateIdx] });
-    } else if (type === "team") {
-      teamRoles.push({ name: row[taskNameIdx], role: row[assignedToIdx] });
-    }
+    const dept = row[deptIdx] || "Other";
+    if (!tasksByDept[dept]) tasksByDept[dept] = [];
+    tasksByDept[dept].push({
+      task: row[taskNameIdx] || "No Task",
+      assignedTo: row[assignedToIdx] || "Unassigned",
+      due: row[dueDateIdx] || "No Due Date",
+      progress: row[progressIdx] || "Not started"
+    });
   });
 
-  // Render tasks
-  const taskContainer = document.getElementById("task-container");
-  taskContainer.innerHTML = "";
   for (const dept in tasksByDept) {
     const section = document.createElement("div");
     section.innerHTML = `<h4>${dept}</h4>`;
@@ -93,25 +83,30 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vRlIhPrQcMZgTxrn8iNI5tV
         </div>
       `;
     });
-    taskContainer.appendChild(section);
+    container.appendChild(section);
   }
+});
 
-  // Render countdowns
-  const countdownContainer = document.getElementById("countdowns");
-  countdownContainer.innerHTML = "";
-  countdowns.forEach(c => {
-    const daysLeft = Math.ceil((new Date(c.date) - new Date()) / (1000 * 60 * 60 * 24));
+// === Load COUNTDOWNS ===
+loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=234415343&single=true&output=csv", rows => {
+  const container = document.getElementById("countdowns");
+  container.innerHTML = "";
+  rows.slice(1).forEach(([event, dateStr]) => {
+    const daysLeft = Math.ceil((new Date(dateStr) - new Date()) / (1000 * 60 * 60 * 24));
     const div = document.createElement("div");
-    div.textContent = `${c.event}: ${daysLeft} day(s) remaining`;
-    countdownContainer.appendChild(div);
-  });
-
-  // Render team roles
-  const teamContainer = document.getElementById("team-roles");
-  teamContainer.innerHTML = "";
-  teamRoles.forEach(p => {
-    const div = document.createElement("div");
-    div.innerHTML = `<strong>${p.name}</strong>: ${p.role}`;
-    teamContainer.appendChild(div);
+    div.textContent = `${event}: ${daysLeft} day(s) remaining`;
+    container.appendChild(div);
   });
 });
+
+// === Load TEAM ===
+loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=553348135&single=true&output=csv", rows => {
+  const container = document.getElementById("team-roles");
+  container.innerHTML = "";
+  rows.slice(1).forEach(([name, role]) => {
+    const div = document.createElement("div");
+    div.innerHTML = `<strong>${name}</strong>: ${role}`;
+    container.appendChild(div);
+  });
+});
+
