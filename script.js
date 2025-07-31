@@ -1,51 +1,4 @@
-// Toggle collapsible sections
-function toggleCollapsibles() {
-  document.querySelectorAll(".collapsible").forEach(btn => {
-    btn.addEventListener("click", () => {
-      btn.classList.toggle("active");
-      const content = btn.nextElementSibling;
-      content.style.display = content.style.display === "block" ? "none" : "block";
-    });
-  });
-}
-toggleCollapsibles();
-
-// Toggle night mode + logo
-document.getElementById("toggle-mode").addEventListener("click", () => {
-  document.body.classList.toggle("night-mode");
-  const logo = document.getElementById("logo");
-  logo.src = document.body.classList.contains("night-mode")
-    ? "msa_logo_white.png"
-    : "msa_logo.png";
-});
-
-// Helper to load and parse CSV
-function loadCSV(url, callback) {
-  fetch(url)
-    .then(res => res.text())
-    .then(text => {
-      const rows = text.trim().split("\n").map(row => {
-        const values = [];
-        let insideQuotes = false;
-        let current = "";
-        for (let char of row) {
-          if (char === '"') {
-            insideQuotes = !insideQuotes;
-          } else if (char === "," && !insideQuotes) {
-            values.push(current.trim());
-            current = "";
-          } else {
-            current += char;
-          }
-        }
-        values.push(current.trim());
-        return values;
-      });
-      callback(rows);
-    });
-}
-
-// === Load TASKS ===
+// === Load TASKS with Details and Category ===
 loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=31970795&single=true&output=csv", rows => {
   const container = document.getElementById("task-container");
   container.innerHTML = "";
@@ -56,6 +9,8 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
   const dueDateIdx = headers.indexOf("due date");
   const progressIdx = headers.indexOf("progress");
   const deptIdx = headers.indexOf("department");
+  const detailsIdx = headers.indexOf("details");
+  const categoryIdx = headers.indexOf("category");
 
   const tasksByDept = {};
 
@@ -66,7 +21,9 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
       task: row[taskNameIdx] || "No Task",
       assignedTo: row[assignedToIdx] || "Unassigned",
       due: row[dueDateIdx] || "No Due Date",
-      progress: row[progressIdx] || "Not started"
+      progress: row[progressIdx] || "Not started",
+      details: row[detailsIdx] || "No details",
+      category: row[categoryIdx] || "Uncategorized"
     });
   });
 
@@ -77,36 +34,14 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
       section.innerHTML += `
         <div class="task-card">
           <strong>${task.task}</strong><br>
+          <em>Category:</em> ${task.category}<br>
           Assigned to: ${task.assignedTo}<br>
           Due: ${task.due}<br>
-          Progress: ${task.progress}
+          Progress: ${task.progress}<br>
+          <em>Details:</em> ${task.details}
         </div>
       `;
     });
     container.appendChild(section);
   }
 });
-
-// === Load COUNTDOWNS ===
-loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=234415343&single=true&output=csv", rows => {
-  const container = document.getElementById("countdowns");
-  container.innerHTML = "";
-  rows.slice(1).forEach(([event, dateStr]) => {
-    const daysLeft = Math.ceil((new Date(dateStr) - new Date()) / (1000 * 60 * 60 * 24));
-    const div = document.createElement("div");
-    div.textContent = `${event}: ${daysLeft} day(s) remaining`;
-    container.appendChild(div);
-  });
-});
-
-// === Load TEAM ===
-loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=553348135&single=true&output=csv", rows => {
-  const container = document.getElementById("team-roles");
-  container.innerHTML = "";
-  rows.slice(1).forEach(([name, role]) => {
-    const div = document.createElement("div");
-    div.innerHTML = `<strong>${name}</strong>: ${role}`;
-    container.appendChild(div);
-  });
-});
-
