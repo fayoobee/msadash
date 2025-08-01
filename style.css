@@ -28,6 +28,24 @@ header h2.title {
   font-size: 24px;
 }
 
+.bismillah {
+  font-size: 20px;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 10px;
+}
+
+.ayah {
+  font-style: italic;
+  font-size: 15px;
+}
+
+.citation {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  display: block;
+  margin-top: 4px;
+}
+
 .collapsibles {
   margin: 20px;
 }
