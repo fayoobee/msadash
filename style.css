@@ -12,34 +12,45 @@ header {
   padding: 20px;
 }
 
-.bismillah {
+#logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+header h1.title {
   font-family: 'Cinzel', serif;
   font-size: 28px;
-  margin-bottom: 10px;
+  margin: 8px 0;
+}
+
+header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 4px 0 10px;
+}
+
+.bismillah {
+  font-family: 'Scheherazade New', 'Amiri', serif;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #002855;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .ayah {
   font-style: italic;
-  color: #003366;
+  color: #002855;
   font-size: 16px;
-  background-color: #f0f8ff;
-  padding: 10px;
+  background-color: #fff8e1;
+  padding: 12px;
   border-radius: 8px;
-  margin-top: 10px;
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.title {
-  font-family: 'Cinzel', serif;
-  font-size: 24px;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 5px rgba(218, 165, 32, 0.4);
 }
 
 .collapsibles {
@@ -82,6 +93,7 @@ button.collapsible:hover,
 #task-container > div {
   margin-bottom: 20px;
   padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 10px;
 }
 
@@ -89,41 +101,40 @@ button.collapsible:hover,
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
-}
-
-.task-card.even {
-  background-color: #fff8dc;
-}
-
-.task-card.odd {
   background-color: #e9f3ff;
+}
+
+.task-card:nth-child(even) {
+  background-color: #fff8dc;
 }
 
 .priority-badge {
   display: inline-block;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
-  border-radius: 12px;
-  padding: 2px 10px;
-  margin-top: 5px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  text-align: center;
 }
 
 .priority-low {
-  background-color: #b2f2bb;
-  color: #155724;
+  background-color: #b2fab4;
+  color: #004d00;
 }
 
 .priority-medium {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #ffe066;
+  color: #805b00;
 }
 
 .priority-high {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #ff5e5e;
+  color: white;
 }
 
-/* Night Mode */
+/* Night Mode Styling */
 .night-mode {
   background-color: #001f3f;
   color: white;
@@ -152,14 +163,15 @@ button.collapsible:hover,
   box-shadow: 0 0 10px #ffd700;
 }
 
-.night-mode .task-card.odd {
-  background-color: #0a1c33;
-}
-
-.night-mode .task-card.even {
+.night-mode .task-card {
   background-color: #002e5f;
 }
 
+.night-mode .task-card:nth-child(even) {
+  background-color: #0a1c33;
+}
+
+/* Link Button Styling */
 .link-button {
   background-color: gold;
   color: #002855;
@@ -167,8 +179,7 @@ button.collapsible:hover,
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   font-weight: bold;
   transition: all 0.3s ease;
-  margin-bottom: 10px;
 }
