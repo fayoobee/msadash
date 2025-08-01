@@ -4,33 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Marketing Command Center</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&family=Scheherazade+New&display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
 </head>
 <body>
   <header>
     <div class="bismillah">بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
     <img id="logo" src="msa_logo.png" alt="MSA Logo" />
+    <h2>UTMMSA 2025–2026</h2>
     <h1 class="title">Marketing Command Center</h1>
-    <p class="ayah"><em>"Indeed, Allah is with those who fear Him and those who are doers of good." — Qur'an 16:128</em></p>
+    <p class="ayah">
+      <em>
+        “And say, ‘Do [as you will], for Allah will see your deeds, and [so will] His Messenger and the believers.’”
+        — Qur’an 9:105
+      </em>
+    </p>
     <button id="toggle-mode">Toggle Night Mode</button>
   </header>
 
-  <div class="collapsibles">
-    <button class="collapsible">📋 Quick Links</button>
-    <div class="content" id="quick-links"></div>
+  <main>
+    <div class="collapsibles">
+      <button class="collapsible">📋 Tasks by Cycle</button>
+      <div class="content" id="task-container">Loading...</div>
 
-    <button class="collapsible">⏳ Countdowns</button>
-    <div class="content" id="countdowns"></div>
+      <button class="collapsible">⏳ Countdowns</button>
+      <div class="content" id="countdowns">Loading...</div>
 
-    <button class="collapsible">👥 Team Roles</button>
-    <div class="content" id="team-roles"></div>
+      <button class="collapsible">👥 Team Roles</button>
+      <div class="content" id="team-roles">Loading...</div>
 
-    <button class="collapsible">🗂️ Tasks by Cycle</button>
-    <div class="content" id="task-container"></div>
-  </div>
-
-  <script src="script.js"></script>
+      <button class="collapsible">📎 Quick Links</button>
+      <div class="content">
+        <a href="https://www.lensbridge.tech/" target="_blank" class="link-button">🧠 LensBridge</a>
+        <a href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank" class="link-button">📚 MSA Notion</a>
+        <a href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank" class="link-button">📋 Marketing Notion</a>
+        <a href="https://www.utm.utoronto.ca/registrar/dates" target="_blank" class="link-button">📅 UTM Important Dates</a>
+        <a href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" class="link-button">🗓 Shared Mktg Calendar</a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
-
