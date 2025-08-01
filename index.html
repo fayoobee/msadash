@@ -1,116 +1,41 @@
-// Toggle collapsible sections
-document.addEventListener("DOMContentLoaded", () => {
-  const collapsibles = document.querySelectorAll(".collapsible");
-  collapsibles.forEach(button => {
-    button.addEventListener("click", () => {
-      button.classList.toggle("active");
-      const content = button.nextElementSibling;
-      content.style.display = content.style.display === "block" ? "none" : "block";
-    });
-  });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MSA Marketing Command Center</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="bismillah">﷽</div>
+    <img id="logo" src="msa_logo.png" alt="MSA Logo">
+    <h1>UTMMSA 2025–2026</h1>
+    <h2 class="title">Marketing Command Center</h2>
+    <p class="ayah">وَقُلِ ٱعْمَلُوا۟ فَسَيَرَى ٱللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَٱلْمُؤْمِنُونَ <span class="citation">(التوبة ١٠٥)</span></p>
+    <button id="toggle-mode">Toggle Night Mode</button>
+  </header>
 
-  // Toggle night mode
-  const toggleModeBtn = document.getElementById("toggle-mode");
-  toggleModeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("night-mode");
-  });
+  <section>
+    <button class="collapsible">🗂️ Task Overview</button>
+    <div class="content" id="task-container">Loading tasks...</div>
 
-  // Fetch data
-  fetchTasks();
-  fetchCountdowns();
-  fetchTeamRoles();
-});
+    <button class="collapsible">⏳ Countdowns</button>
+    <div class="content" id="countdowns">Loading countdowns...</div>
 
-const fetchTasks = async () => {
-  const container = document.getElementById("task-container");
-  const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=31970795&single=true&output=csv";
-  const response = await fetch(sheetUrl);
-  const data = await response.text();
-  const rows = data.split("\n").slice(1);
+    <button class="collapsible">👥 Team Roles</button>
+    <div class="content" id="team-roles">Loading team...</div>
 
-  const tasksByCycle = {};
+    <button class="collapsible">📎 Quick Links</button>
+    <div class="content" id="quick-links">
+      <a class="link-button" href="https://www.lensbridge.tech/" target="_blank">🌐 LensBridge</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank">📘 MSA General Notion</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank">📝 Caption Bank & Branding Guide</a>
+      <a class="link-button" href="https://www.utm.utoronto.ca/registrar/dates" target="_blank">📅 UTM Important Dates</a>
+      <a class="link-button" href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">🗓️ Shared Marketing Calendar</a>
+    </div>
+  </section>
 
-  rows.forEach(row => {
-    const [task, assignedTo, due, progress, department, details, category, type, cycle, priority] = row.split(",");
-    if (!tasksByCycle[cycle]) tasksByCycle[cycle] = [];
-
-    tasksByCycle[cycle].push({
-      task,
-      assignedTo,
-      due,
-      progress,
-      department,
-      details,
-      category,
-      type,
-      cycle,
-      priority
-    });
-  });
-
-  container.innerHTML = "";
-
-  Object.keys(tasksByCycle).forEach(cycle => {
-    const section = document.createElement("div");
-    section.innerHTML = `<h3>${cycle}</h3>`;
-
-    tasksByCycle[cycle].forEach(task => {
-      const priorityClass =
-        task.priority.toLowerCase() === "high"
-          ? "priority-high"
-          : task.priority.toLowerCase() === "medium"
-          ? "priority-medium"
-          : "priority-low";
-
-      section.innerHTML += `
-        <div class="task-card">
-          <strong>${task.task}</strong><br>
-          <em>Category:</em> ${task.category}<br>
-          Assigned to: ${task.assignedTo}<br>
-          Due: ${task.due}<br>
-          Progress: ${task.progress}<br>
-          Cycle: ${task.cycle}<br>
-          <em>Details:</em> ${task.details}<br>
-          <div class="priority-badge ${priorityClass}">Priority: ${task.priority}</div>
-        </div>
-      `;
-    });
-
-    container.appendChild(section);
-  });
-};
-
-const fetchCountdowns = async () => {
-  const container = document.getElementById("countdowns");
-  const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=234415343&single=true&output=csv";
-  const response = await fetch(sheetUrl);
-  const data = await response.text();
-  const rows = data.split("\n").slice(1);
-
-  container.innerHTML = "";
-  rows.forEach(row => {
-    const [label, dateStr] = row.split(",");
-    const targetDate = new Date(dateStr);
-    const now = new Date();
-    const diff = Math.floor((targetDate - now) / (1000 * 60 * 60 * 24));
-
-    const countdownText = diff >= 0 ? `${diff} days left` : `Occurred ${-diff} days ago`;
-
-    container.innerHTML += `<p><strong>${label}:</strong> ${countdownText}</p>`;
-  });
-};
-
-const fetchTeamRoles = async () => {
-  const container = document.getElementById("team-roles");
-  const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=553348135&single=true&output=csv";
-  const response = await fetch(sheetUrl);
-  const data = await response.text();
-  const rows = data.split("\n").slice(1);
-
-  container.innerHTML = "<ul>";
-  rows.forEach(row => {
-    const [name, role] = row.split(",");
-    container.innerHTML += `<li><strong>${name}:</strong> ${role}</li>`;
-  });
-  container.innerHTML += "</ul>";
-};
+  <script src="script.js"></script>
+</body>
+</html>
