@@ -4,43 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MSA Marketing Command Center</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Montserrat&display=swap" rel="stylesheet"/>
 </head>
 <body>
   <header>
-    <img id="logo" src="msa_logo.png" alt="MSA Logo" />
-    <h1>بسم الله الرحمن الرحيم</h1>
-    <h2 class="title">MSA Marketing Command Center</h2>
-    <p class="ayah">وَقُلِ ٱعْمَلُوا۟ فَسَيَرَى ٱللَّهُ عَمَلَكُمْ وَرَسُولُهُۥ وَٱلْمُؤْمِنُونَ <br><span class="citation">– At-Tawbah: 105</span></p>
-    <button id="toggle-mode">Toggle Night Mode</button>
+    <img id="logo" src="msa_logo.png" alt="MSA Logo"/>
+    <h1>Marketing Command Center</h1>
+    <h2 class="title">UTM MSA 2025–2026</h2>
+    <button id="toggle-mode">Toggle Night Mode 🌙</button>
   </header>
 
-  <main>
-    <div class="collapsibles">
-      <button class="collapsible">Countdowns</button>
-      <div class="content" id="countdowns"><p>Loading countdowns...</p></div>
+  <div class="collapsibles">
+    <button class="collapsible">📅 Countdowns</button>
+    <div class="content" id="countdowns">Loading countdowns...</div>
 
-      <button class="collapsible">Quick Links</button>
-      <div class="content">
-        <ul>
-          <li><a href="https://www.lensbridge.tech/">LensBridge</a></li>
-          <li><a href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad">Marketing Notion</a></li>
-          <li><a href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5">MSA Notion</a></li>
-          <li><a href="https://www.utm.utoronto.ca/registrar/dates">UTM Important Dates</a></li>
-          <li><a href="https://calendar.google.com/calendar/u/0?cid=MW...">Marketing Google Calendar</a></li>
-        </ul>
-      </div>
+    <button class="collapsible">👥 Team Roles</button>
+    <div class="content" id="team-roles">Loading team roles...</div>
 
-      <button class="collapsible">Team Roles</button>
-      <div class="content" id="team-roles"><p>Loading team roles...</p></div>
+    <button class="collapsible">🔗 Quick Links</button>
+    <div class="content" id="quick-links">
+      <a href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" class="link-button" target="_blank">📋 Caption Bank & Branding Guide</a><br/>
+      <a href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" class="link-button" target="_blank">📚 MSA General Notion</a><br/>
+      <a href="https://www.utm.utoronto.ca/registrar/dates" class="link-button" target="_blank">📆 UTM Important Dates</a>
     </div>
 
-    <section id="tasks">
-      <h3>Tasks</h3>
-      <div id="task-container">Loading tasks...</div>
-    </section>
-  </main>
+    <button class="collapsible">📝 Tasks by Cycle</button>
+    <div class="content" id="task-container">Loading tasks...</div>
+  </div>
 
   <script src="script.js"></script>
 </body>
