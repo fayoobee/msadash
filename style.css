@@ -7,9 +7,16 @@ body {
   transition: all 0.5s ease;
 }
 
+#bismillah {
+  font-family: 'Cinzel', serif;
+  font-size: 40px;
+  text-align: center;
+  padding: 10px 0;
+}
+
 header {
   text-align: center;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 #logo {
@@ -18,36 +25,22 @@ header {
   margin-bottom: 10px;
 }
 
-header h1 {
+.title {
   font-family: 'Cinzel', serif;
   font-size: 28px;
 }
 
-header h2.title {
-  font-family: 'Cinzel', serif;
-  font-size: 24px;
-}
-
-.bismillah {
-  font-size: 20px;
-  font-family: 'Cinzel', serif;
-  margin-bottom: 10px;
-}
-
 .ayah {
   font-style: italic;
-  font-size: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
 }
 
 .citation {
-  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
-  display: block;
-  margin-top: 4px;
-}
-
-.collapsibles {
-  margin: 20px;
+  font-style: italic;
+  margin-bottom: 20px;
 }
 
 button.collapsible,
@@ -101,6 +94,34 @@ button.collapsible:hover,
   background-color: #fff8dc;
 }
 
+.priority-high {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.priority-medium {
+  background-color: #ffd700;
+  color: #333;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.priority-low {
+  background-color: #50c878;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* Night Mode */
 .night-mode {
   background-color: #001f3f;
   color: white;
@@ -120,13 +141,6 @@ button.collapsible:hover,
 .night-mode .link-button {
   background-color: #003366;
   color: white;
-}
-
-.night-mode button.collapsible:hover,
-.night-mode #toggle-mode:hover,
-.night-mode .link-button:hover {
-  background-color: #002244;
-  box-shadow: 0 0 10px #ffd700;
 }
 
 .night-mode .task-card {
