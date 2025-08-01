@@ -3,41 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MSA Marketing Command Center</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Montserrat&display=swap" rel="stylesheet"/>
+  <title>Marketing Command Center</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Montserrat&display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="bismillah-top">بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+  <div id="bismillah">﷽</div>
 
   <header>
-    <img id="logo" src="msa_logo.png" alt="MSA Logo"/>
-    <h1>Marketing Command Center</h1>
-    <h2 class="title">UTM MSA 2025–2026</h2>
-    <p class="ayah highlighted">“...And say, ‘Do [your] work, for Allah will see your deeds, and [so will] His Messenger and the believers.’” 
-      <span class="citation">(Surah At-Tawbah 9:105)</span>
-    </p>
+    <img src="msa_logo.png" id="logo" alt="MSA Logo">
+    <h1 class="title">Marketing Command Center</h1>
+    <h2 class="ayah">وَقُلِ ٱعْمَلُوا۟ فَسَيَرَى ٱللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَٱلْمُؤْمِنُونَ</h2>
+    <p class="citation">— Surah At-Tawbah 9:105</p>
     <button id="toggle-mode">Toggle Night Mode 🌙</button>
   </header>
 
   <div class="collapsibles">
-    <button class="collapsible">📅 Countdowns</button>
+    <button class="collapsible">📸 Tasks</button>
+    <div class="content" id="task-container">Loading tasks...</div>
+
+    <button class="collapsible">⏳ Countdowns</button>
     <div class="content" id="countdowns">Loading countdowns...</div>
 
     <button class="collapsible">👥 Team Roles</button>
-    <div class="content" id="team-roles">Loading team roles...</div>
+    <div class="content" id="team-roles">Loading team...</div>
 
-    <button class="collapsible">🔗 Quick Links</button>
+    <button class="collapsible">📎 Quick Links</button>
     <div class="content" id="quick-links">
-      <a href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" class="link-button" target="_blank">📋 Caption Bank & Branding Guide</a><br/>
-      <a href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" class="link-button" target="_blank">📚 MSA General Notion</a><br/>
-      <a href="https://www.utm.utoronto.ca/registrar/dates" class="link-button" target="_blank">📆 UTM Important Dates</a>
+      <a class="link-button" href="https://www.lensbridge.tech/" target="_blank">🔗 LensBridge</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank">📚 MSA Notion</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank">🗂️ Marketing Notion</a>
+      <a class="link-button" href="https://www.utm.utoronto.ca/registrar/dates" target="_blank">📅 UTM Important Dates</a>
+      <a class="link-button" href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">📆 Shared Calendar</a>
     </div>
-
-    <button class="collapsible">📝 Tasks by Cycle</button>
-    <div class="content" id="task-container">Loading tasks...</div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
