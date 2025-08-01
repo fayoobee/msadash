@@ -1,4 +1,4 @@
-// Collapsibles
+// Toggle collapsible sections
 function toggleCollapsibles() {
   document.querySelectorAll(".collapsible").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -10,7 +10,7 @@ function toggleCollapsibles() {
 }
 toggleCollapsibles();
 
-// Night Mode
+// Toggle night mode and switch logo
 document.getElementById("toggle-mode").addEventListener("click", () => {
   document.body.classList.toggle("night-mode");
   const logo = document.getElementById("logo");
@@ -19,24 +19,20 @@ document.getElementById("toggle-mode").addEventListener("click", () => {
     : "msa_logo.png";
 });
 
-// CSV Loader
+// Helper to fetch and parse CSV
 function loadCSV(url, callback) {
   fetch(url)
     .then(res => res.text())
     .then(text => {
       const rows = text.trim().split("\n").map(row => {
         const values = [];
-        let insideQuotes = false;
-        let cell = '';
+        let insideQuotes = false, cell = '';
         for (let char of row) {
-          if (char === '"') {
-            insideQuotes = !insideQuotes;
-          } else if (char === "," && !insideQuotes) {
+          if (char === '"') insideQuotes = !insideQuotes;
+          else if (char === ',' && !insideQuotes) {
             values.push(cell.trim());
             cell = '';
-          } else {
-            cell += char;
-          }
+          } else cell += char;
         }
         values.push(cell.trim());
         return values;
@@ -45,60 +41,53 @@ function loadCSV(url, callback) {
     });
 }
 
-// === TASKS ===
+// === Load TASKS ===
 loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=31970795&single=true&output=csv", rows => {
   const container = document.getElementById("task-container");
   container.innerHTML = "";
   const headers = rows[0].map(h => h.trim().toLowerCase());
 
   const idx = name => headers.indexOf(name.toLowerCase());
-  const deptIdx = idx("department");
 
-  const tasksByDept = {};
+  const groupByCycle = {};
 
-  rows.slice(1).forEach(row => {
-    const dept = row[deptIdx] || "Other";
-    if (!tasksByDept[dept]) tasksByDept[dept] = [];
-    tasksByDept[dept].push({
-      task: row[idx("task name")] || "",
-      assignedTo: row[idx("assigned to")] || "",
-      due: row[idx("due date")] || "",
-      progress: row[idx("progress")] || "",
-      details: row[idx("details")] || "",
-      category: row[idx("category")] || "",
-      priority: row[idx("priority")] || "Low",
-      cycle: row[idx("cycle")] || "Unassigned"
-    });
+  rows.slice(1).forEach((row, i) => {
+    const cycle = row[idx("Cycle")] || "Uncategorized";
+    if (!groupByCycle[cycle]) groupByCycle[cycle] = [];
+    groupByCycle[cycle].push({ row, index: i });
   });
 
-  for (const dept in tasksByDept) {
+  for (const cycle in groupByCycle) {
     const section = document.createElement("div");
-    section.innerHTML = `<h4>${dept}</h4>`;
-    tasksByDept[dept].forEach(task => {
-      const priorityClass = {
-        "High": "priority-high",
-        "Medium": "priority-medium",
-        "Low": "priority-low"
-      }[task.priority] || "priority-low";
+    section.innerHTML = `<h4>${cycle}</h4>`;
 
-      section.innerHTML += `
-        <div class="task-card">
-          <strong>${task.task}</strong><br>
-          <em>Category:</em> ${task.category}<br>
-          Assigned to: ${task.assignedTo}<br>
-          Due: ${task.due}<br>
-          Progress: ${task.progress}<br>
-          Cycle: ${task.cycle}<br>
-          <em>Details:</em> ${task.details}<br>
-          <span class="${priorityClass}">Priority: ${task.priority}</span>
-        </div>
+    groupByCycle[cycle].forEach(({ row, index }) => {
+      const priority = (row[idx("Priority")] || "").toLowerCase();
+      let badgeClass = "";
+      if (priority === "high") badgeClass = "priority-high";
+      else if (priority === "medium") badgeClass = "priority-medium";
+      else if (priority === "low") badgeClass = "priority-low";
+
+      const card = document.createElement("div");
+      card.className = `task-card ${index % 2 === 0 ? "even" : "odd"}`;
+      card.innerHTML = `
+        <strong>${row[idx("Task Name")]}</strong><br>
+        <em>Category:</em> ${row[idx("Category")]}<br>
+        Assigned to: ${row[idx("Assigned To")]}<br>
+        Due: ${row[idx("Due Date")]}<br>
+        Progress: ${row[idx("Progress")]}<br>
+        Cycle: ${row[idx("Cycle")]}<br>
+        <em>Details:</em> ${row[idx("Details")]}<br>
+        <span class="priority-badge ${badgeClass}">Priority: ${priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
       `;
+      section.appendChild(card);
     });
+
     container.appendChild(section);
   }
 });
 
-// === COUNTDOWNS ===
+// === Load COUNTDOWNS ===
 loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=234415343&single=true&output=csv", rows => {
   const container = document.getElementById("countdowns");
   container.innerHTML = "";
@@ -110,7 +99,7 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
   });
 });
 
-// === TEAM ===
+// === Load TEAM ===
 loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=553348135&single=true&output=csv", rows => {
   const container = document.getElementById("team-roles");
   container.innerHTML = "";
@@ -121,3 +110,13 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
   });
 });
 
+// === Quick Links ===
+const links = [
+  ["📸 LensBridge", "https://www.lensbridge.tech/"],
+  ["📒 MSA Notion", "https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5"],
+  ["🧠 Marketing Notion", "https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad"],
+  ["📅 UTM Important Dates", "https://www.utm.utoronto.ca/registrar/dates"],
+  ["📆 Shared Marketing Calendar", "https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"]
+];
+const quickLinksContainer = document.getElementById("quick-links");
+quickLinksContainer.innerHTML = links.map(([text, url]) => `<a class="link-button" href="${url}" target="_blank">${text}</a>`).join("");
