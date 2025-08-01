@@ -45,43 +45,50 @@ function loadCSV(url, callback) {
     });
 }
 
-// === Load TASKS with category + details ===
+// === Load TASKS grouped by cycle ===
 loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=31970795&single=true&output=csv", rows => {
   const container = document.getElementById("task-container");
   container.innerHTML = "";
   const headers = rows[0].map(h => h.trim().toLowerCase());
 
-  const taskNameIdx = headers.indexOf("task name");
-  const assignedToIdx = headers.indexOf("assigned to");
-  const dueDateIdx = headers.indexOf("due date");
-  const progressIdx = headers.indexOf("progress");
-  const deptIdx = headers.indexOf("department");
-  const detailsIdx = headers.indexOf("details");
-  const categoryIdx = headers.indexOf("category");
+  const indices = {
+    task: headers.indexOf("task name"),
+    assignedTo: headers.indexOf("assigned to"),
+    due: headers.indexOf("due date"),
+    progress: headers.indexOf("progress"),
+    dept: headers.indexOf("department"),
+    details: headers.indexOf("details"),
+    category: headers.indexOf("category"),
+    priority: headers.indexOf("priority"),
+    cycle: headers.indexOf("cycle")
+  };
 
-  const tasksByDept = {};
+  const tasksByCycle = {};
 
   rows.slice(1).forEach(row => {
-    const dept = row[deptIdx] || "Other";
-    if (!tasksByDept[dept]) tasksByDept[dept] = [];
-    tasksByDept[dept].push({
-      task: row[taskNameIdx] || "No Task",
-      assignedTo: row[assignedToIdx] || "Unassigned",
-      due: row[dueDateIdx] || "No Due Date",
-      progress: row[progressIdx] || "Not started",
-      details: row[detailsIdx] || "No details",
-      category: row[categoryIdx] || "Uncategorized"
+    const cycle = row[indices.cycle] || "Cycle: Unassigned";
+    if (!tasksByCycle[cycle]) tasksByCycle[cycle] = [];
+    tasksByCycle[cycle].push({
+      task: row[indices.task],
+      assignedTo: row[indices.assignedTo],
+      due: row[indices.due],
+      progress: row[indices.progress],
+      dept: row[indices.dept],
+      details: row[indices.details],
+      category: row[indices.category],
+      priority: row[indices.priority]
     });
   });
 
-  for (const dept in tasksByDept) {
+  for (const cycle in tasksByCycle) {
     const section = document.createElement("div");
-    section.innerHTML = `<h4>${dept}</h4>`;
-    tasksByDept[dept].forEach(task => {
+    section.innerHTML = `<h4>${cycle}</h4>`;
+    tasksByCycle[cycle].forEach(task => {
       section.innerHTML += `
         <div class="task-card">
           <strong>${task.task}</strong><br>
-          <em>Category:</em> ${task.category}<br>
+          <em>Category:</em> ${task.category} | <em>Priority:</em> ${task.priority}<br>
+          <strong>Department:</strong> ${task.dept}<br>
           Assigned to: ${task.assignedTo}<br>
           Due: ${task.due}<br>
           Progress: ${task.progress}<br>
@@ -100,7 +107,7 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
   rows.slice(1).forEach(([event, dateStr]) => {
     const daysLeft = Math.ceil((new Date(dateStr) - new Date()) / (1000 * 60 * 60 * 24));
     const div = document.createElement("div");
-    div.textContent = `${event}: ${daysLeft} day(s) remaining`;
+    div.textContent = `📌 ${event}: ${daysLeft} day(s) remaining`;
     container.appendChild(div);
   });
 });
@@ -111,7 +118,7 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
   container.innerHTML = "";
   rows.slice(1).forEach(([name, role]) => {
     const div = document.createElement("div");
-    div.innerHTML = `<strong>${name}</strong>: ${role}`;
+    div.innerHTML = `👤 <strong>${name}</strong>: ${role}`;
     container.appendChild(div);
   });
 });
