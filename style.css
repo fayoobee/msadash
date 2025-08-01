@@ -28,15 +28,6 @@ header h2.title {
   font-size: 24px;
 }
 
-.ayah {
-  font-style: italic;
-}
-
-.citation {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-}
-
 .collapsibles {
   margin: 20px;
 }
@@ -92,7 +83,6 @@ button.collapsible:hover,
   background-color: #fff8dc;
 }
 
-/* Night Mode Styling */
 .night-mode {
   background-color: #001f3f;
   color: white;
@@ -129,7 +119,6 @@ button.collapsible:hover,
   background-color: #0a1c33;
 }
 
-/* Link Button Styling */
 .link-button {
   background-color: gold;
   color: #002855;
