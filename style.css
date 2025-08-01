@@ -9,48 +9,45 @@ body {
 
 header {
   text-align: center;
-  padding: 20px;
+  padding: 20px 10px 10px 10px;
 }
 
 #logo {
   width: 120px;
   height: auto;
-  margin-bottom: 5px;
 }
 
-header h1.title {
+header h1 {
   font-family: 'Cinzel', serif;
-  font-size: 28px;
-  margin: 8px 0;
+  font-size: 24px;
+  margin: 5px 0;
 }
 
-header h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  margin: 4px 0 10px;
+header h2.title {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  margin: 5px 0;
 }
 
 .bismillah {
-  font-family: 'Scheherazade New', 'Amiri', serif;
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  color: #002855;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  font-size: 38px;
+  font-family: "Amiri", serif;
+  color: gold;
+  margin-bottom: 5px;
 }
 
 .ayah {
   font-style: italic;
-  color: #002855;
   font-size: 16px;
-  background-color: #fff8e1;
-  padding: 12px;
+  background-color: #fff8dc;
+  padding: 5px 10px;
   border-radius: 8px;
-  width: fit-content;
-  margin: 0 auto 20px;
-  box-shadow: 0 0 5px rgba(218, 165, 32, 0.4);
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.citation {
+  font-size: 14px;
 }
 
 .collapsibles {
@@ -102,6 +99,7 @@ button.collapsible:hover,
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: #e9f3ff;
+  position: relative;
 }
 
 .task-card:nth-child(even) {
@@ -110,27 +108,25 @@ button.collapsible:hover,
 
 .priority-badge {
   display: inline-block;
-  font-size: 13px;
-  font-weight: bold;
-  border-radius: 20px;
+  margin-top: 6px;
   padding: 4px 12px;
-  margin-top: 8px;
-  margin-bottom: 4px;
-  text-align: center;
-}
-
-.priority-low {
-  background-color: #b2fab4;
-  color: #004d00;
-}
-
-.priority-medium {
-  background-color: #ffe066;
-  color: #805b00;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .priority-high {
-  background-color: #ff5e5e;
+  background-color: red;
+  color: white;
+}
+
+.priority-medium {
+  background-color: gold;
+  color: #002855;
+}
+
+.priority-low {
+  background-color: #5cb85c;
   color: white;
 }
 
@@ -171,7 +167,6 @@ button.collapsible:hover,
   background-color: #0a1c33;
 }
 
-/* Link Button Styling */
 .link-button {
   background-color: gold;
   color: #002855;
@@ -181,5 +176,6 @@ button.collapsible:hover,
   text-decoration: none;
   display: inline-block;
   font-weight: bold;
-  transition: all 0.3s ease;
+  margin: 5px 0;
 }
+
