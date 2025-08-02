@@ -30,20 +30,23 @@ header h2.title {
 }
 
 .bismillah {
-  font-size: 38px;
+  font-size: 42px;
   font-family: "Amiri", serif;
-  color: gold;
-  margin-bottom: 5px;
+  color: #002855;
+  margin-bottom: 10px;
+  transition: color 0.5s ease;
 }
 
 .ayah {
   font-style: italic;
   font-size: 16px;
-  background-color: #fff8dc;
+  background-color: gold;
   padding: 5px 10px;
   border-radius: 8px;
   display: inline-block;
   margin: 10px 0;
+  color: #002855;
+  transition: all 0.5s ease;
 }
 
 .citation {
@@ -167,6 +170,15 @@ button.collapsible:hover,
   background-color: #0a1c33;
 }
 
+.night-mode .bismillah {
+  color: white;
+}
+
+.night-mode .ayah {
+  background-color: #66aaff;
+  color: white;
+}
+
 .link-button {
   background-color: gold;
   color: #002855;
@@ -178,4 +190,5 @@ button.collapsible:hover,
   font-weight: bold;
   margin: 5px 0;
 }
+
 
