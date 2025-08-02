@@ -9,57 +9,70 @@ body {
 
 header {
   text-align: center;
-  padding: 20px 10px;
+  padding: 20px;
+  position: relative;
 }
 
-.bismillah-wrapper {
+.bismillah-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: -20px;
 }
 
-.bismillah-img {
-  max-width: 280px;
+#bismillah-img {
+  width: 260px;
   height: auto;
-  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg);
-  transition: filter 0.5s ease;
+  filter: brightness(0) saturate(100%) invert(10%) sepia(100%) hue-rotate(185deg) contrast(100%);
+  transition: filter 0.3s ease;
+}
+
+.night-mode #bismillah-img {
+  filter: brightness(0) invert(1);
 }
 
 #logo {
-  width: 120px;
+  width: 100px;
   height: auto;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-header h1 {
+.title {
   font-family: 'Cinzel', serif;
   font-size: 24px;
-  margin: 5px 0;
-}
-
-header h2.title {
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  margin: 5px 0;
 }
 
 .ayah {
-  font-style: italic;
-  font-size: 16px;
-  background-color: gold;
-  padding: 8px 12px;
-  border-radius: 8px;
+  background-color: rgba(255, 215, 0, 0.15);
+  padding: 5px 15px;
   display: inline-block;
-  margin: 10px auto;
-  color: #002855;
-  max-width: 90%;
-  transition: all 0.5s ease;
+  border-radius: 8px;
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: 500;
 }
 
 .citation {
   font-size: 14px;
-  font-style: normal;
-  margin-left: 8px;
+  font-style: italic;
+}
+
+.night-mode {
+  background-color: #001f3f;
+  color: white;
+}
+
+.night-mode .ayah {
+  background-color: rgba(173, 216, 230, 0.2);
+  color: white;
+}
+
+.night-mode .citation {
+  color: #dcdcdc;
+}
+
+.collapsibles {
+  margin: 20px;
 }
 
 button.collapsible,
@@ -94,19 +107,10 @@ button.collapsible:hover,
   border-radius: 8px;
 }
 
-#task-container > div {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
 .task-card {
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
-  background-color: #e9f3ff;
-  position: relative;
 }
 
 .task-card:nth-child(even) {
@@ -115,50 +119,28 @@ button.collapsible:hover,
 
 .priority-badge {
   display: inline-block;
-  margin-top: 8px;
-  padding: 4px 12px;
-  border-radius: 14px;
+  margin-top: 5px;
+  padding: 4px 10px;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: bold;
+  color: white;
 }
 
 .priority-high {
-  background-color: red;
-  color: white;
+  background-color: #e63946;
 }
 
 .priority-medium {
-  background-color: gold;
-  color: #002855;
+  background-color: #f1c40f;
+  color: #000;
 }
 
 .priority-low {
-  background-color: #5cb85c;
-  color: white;
+  background-color: #27ae60;
 }
 
-.link-button {
-  background-color: gold;
-  color: #002855;
-  border-radius: 20px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-/* Night Mode */
-.night-mode {
-  background-color: #001f3f;
-  color: white;
-}
-
-.night-mode a {
-  color: white;
-}
-
+/* Night Mode Cards */
 .night-mode .content {
   background-color: #003366;
   border-left: 3px solid #ffcc00;
@@ -171,26 +153,25 @@ button.collapsible:hover,
   color: white;
 }
 
-.night-mode button.collapsible:hover,
-.night-mode #toggle-mode:hover,
 .night-mode .link-button:hover {
   background-color: #002244;
   box-shadow: 0 0 10px #ffd700;
-}
-
-.night-mode .task-card {
-  background-color: #002e5f;
 }
 
 .night-mode .task-card:nth-child(even) {
   background-color: #0a1c33;
 }
 
-.night-mode .bismillah-img {
-  filter: invert(100%) brightness(300%);
-}
-
-.night-mode .ayah {
-  background-color: #001f4d;
-  color: white;
+.link-button {
+  background-color: gold;
+  color: #002855;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: block;
+  margin-bottom: 10px;
 }
