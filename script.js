@@ -90,61 +90,6 @@ function loadTasks() {
         category: row[categoryIdx] || "Uncategorized",
         priority: row[priorityIdx] || "Medium",
         cycle: cycle
-        // Progress Bar Logic
-let progressValue = 0;
-let progressColor = "#ccc"; // default gray
-
-if (task.progress.toLowerCase() === "in progress") {
-  progressValue = 50;
-  progressColor = "#ffc107"; // gold
-} else if (task.progress.toLowerCase() === "completed") {
-  progressValue = 100;
-  progressColor = "#28a745"; // green
-}
-
-section.innerHTML += `
-  <div class="task-card">
-    <strong>${task.task}</strong><br>
-    <em>Category:</em> ${task.category}<br>
-    Assigned to: ${task.assignedTo}<br>
-    Due: ${task.due}<br>
-    Progress: ${task.progress}<br>
-    <div class="progress-container">
-      <div class="progress-bar" style="width: ${progressValue}%; background-color: ${progressColor};"></div>
-    </div>
-    <em>Details:</em> ${task.details}<br>
-    <div class="priority-badge ${priorityClass}">Priority: ${task.priority}</div>
-  </div>
-`;
-      });
-    });
-
-    for (const cycle in tasksByCycle) {
-      const section = document.createElement("div");
-      section.innerHTML = `<h3>${cycle}</h3>`;
-      tasksByCycle[cycle].forEach(task => {
-        const priorityClass =
-          task.priority.toLowerCase() === "high"
-            ? "priority-high"
-            : task.priority.toLowerCase() === "medium"
-            ? "priority-medium"
-            : "priority-low";
-
-        section.innerHTML += `
-          <div class="task-card">
-            <strong>${task.task}</strong><br>
-            <em>Category:</em> ${task.category}<br>
-            Assigned to: ${task.assignedTo}<br>
-            Due: ${task.due}<br>
-            Progress: ${task.progress}<br>
-            Cycle: ${task.cycle}<br>
-            <em>Details:</em> ${task.details}<br>
-            <div class="priority-badge ${priorityClass}">Priority: ${task.priority}</div>
-          </div>
-        `;
-      });
-      container.appendChild(section);
-    }
   });
 }
 
