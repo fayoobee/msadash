@@ -3,29 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MSA Marketing Command Center</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet"/>
+  <title>Marketing Command Center</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
 </head>
 <body>
+  <!-- Bismillah -->
+  <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+
+  <!-- Logo and Title -->
   <header>
-    <div id="bismillah">﷽</div>
-    <img id="logo" src="msa_logo.png" alt="MSA Logo"/>
-    <h2 class="title">UTMMSA 2025–2026</h2>
-    <p class="ayah"><span class="highlight">وَقُلِ ٱعْمَلُوا۟ فَسَيَرَى ٱللَّهُ عَمَلَكُمْ</span></p>
-    <p class="citation">Surah At-Tawbah 9:105</p>
+    <img id="logo" src="msa_logo.png" alt="MSA Logo" />
+    <h1>UTMMSA 2025–2026</h1>
+    <h2 class="title">Marketing Command Center</h2>
+    <div class="ayah">
+      <p class="highlight">
+        وَقُلِ ٱعْمَلُوا۟ فَسَيَرَى ٱللَّهُ عَمَلَكُمْ وَرَسُولُهُۥ وَٱلْمُؤْمِنُونَ
+      </p>
+      <p class="citation">— Surah At-Tawbah 9:105</p>
+    </div>
     <button id="toggle-mode">Toggle Night Mode</button>
   </header>
 
+  <!-- Quick Links -->
   <div class="collapsibles">
-    <button class="collapsible">📅 Task Calendar</button>
+    <button class="collapsible">📎 Quick Links</button>
+    <div class="content">
+      <a class="link-button" href="https://www.lensbridge.tech/" target="_blank">🔗 LensBridge</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank">🧭 MSA Notion</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank">🗂 Marketing Notion</a>
+      <a class="link-button" href="https://www.utm.utoronto.ca/registrar/dates" target="_blank">📅 UTM Important Dates</a>
+      <a class="link-button" href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">📆 Shared Calendar</a>
+    </div>
+  </div>
+
+  <!-- Countdown Section -->
+  <div class="collapsibles">
+    <button class="collapsible">⏳ Countdown</button>
+    <div class="content" id="countdowns"></div>
+  </div>
+
+  <!-- Task Section -->
+  <div class="collapsibles">
+    <button class="collapsible">📋 Task Board</button>
+    <div class="content" id="task-container"></div>
+  </div>
+
+  <!-- Calendar Section -->
+  <div class="collapsibles">
+    <button class="collapsible">📆 Calendar View</button>
     <div class="content">
       <div id="calendar"></div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+  <!-- Team Section -->
+  <div class="collapsibles">
+    <button class="collapsible">🤝 Team Roles</button>
+    <div class="content" id="team-roles"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer><p>JazakumAllahu khairan!</p></footer>
+
+  <!-- FullCalendar JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+
+  <!-- Your JS -->
   <script src="script.js"></script>
 </body>
 </html>
-
