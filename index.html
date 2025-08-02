@@ -2,70 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marketing Command Center</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- FullCalendar CSS & JS -->
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 </head>
 <body>
-  <!-- Bismillah -->
-  <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
-
-  <!-- Logo and Title -->
   <header>
+    <div id="bismillah">﷽</div>
     <img id="logo" src="msa_logo.png" alt="MSA Logo" />
     <h1>UTMMSA 2025–2026</h1>
     <h2 class="title">Marketing Command Center</h2>
-    <div class="ayah">
-      <p class="highlight">
-        وَقُلِ ٱعْمَلُوا۟ فَسَيَرَى ٱللَّهُ عَمَلَكُمْ وَرَسُولُهُۥ وَٱلْمُؤْمِنُونَ
-      </p>
-      <p class="citation">— Surah At-Tawbah 9:105</p>
+    <div class="ayah" id="ayah-highlight">
+      وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَٱلْمُؤْمِنُونَ
     </div>
+    <div class="citation">(Surah At-Tawbah 9:105)</div>
     <button id="toggle-mode">Toggle Night Mode</button>
   </header>
 
-  <!-- Quick Links -->
   <div class="collapsibles">
-    <button class="collapsible">📎 Quick Links</button>
-    <div class="content">
+    <button class="collapsible">📌 Quick Links</button>
+    <div class="content" id="quick-links">
       <a class="link-button" href="https://www.lensbridge.tech/" target="_blank">🔗 LensBridge</a>
-      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank">🧭 MSA Notion</a>
-      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank">🗂 Marketing Notion</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank">📘 MSA Notion</a>
+      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank">🗂️ Marketing Notion</a>
       <a class="link-button" href="https://www.utm.utoronto.ca/registrar/dates" target="_blank">📅 UTM Important Dates</a>
-      <a class="link-button" href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">📆 Shared Calendar</a>
+      <a class="link-button" href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">🗓️ Shared Marketing Calendar</a>
     </div>
+
+    <button class="collapsible">✅ Tasks by Cycle</button>
+    <div class="content" id="task-container">Loading...</div>
+
+    <button class="collapsible">📅 Task Calendar</button>
+    <div class="content">
+      <div id="calendar"></div>
+    </div>
+
+    <button class="collapsible">⏳ Countdowns</button>
+    <div class="content" id="countdowns">Loading...</div>
+
+    <button class="collapsible">🧑‍🤝‍🧑 Team Roles</button>
+    <div class="content" id="team-roles">Loading...</div>
   </div>
 
-  <!-- Countdown Section -->
-  <div class="collapsibles">
-    <button class="collapsible">⏳ Countdown</button>
-    <div class="content" id="countdowns"></div>
-  </div>
-
-  <!-- Task Section -->
-  <div class="collapsibles">
-    <button class="collapsible">📋 Task Board</button>
-    <div class="content" id="task-container"></div>
-  </div>
-
-  <!-- Team Section -->
-  <div class="collapsibles">
-    <button class="collapsible">🤝 Team Roles</button>
-    <div class="content" id="team-roles"></div>
-  </div>
-
-  <!-- Footer -->
-  <footer><p>JazakumAllahu khairan!</p></footer>
+  <footer>
+    <p>JazakumAllahu khairan!</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
-  <!-- === Calendar Section === -->
-<button class="collapsible">📅 Task Calendar</button>
-<div class="content">
-  <div id="calendar"></div>
-</div>
-  
 </html>
