@@ -89,11 +89,13 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
     container.appendChild(section);
   }
 
-  // === Render Calendar ===
-  const calendarEl = document.getElementById("calendar");
+ // === Render Calendar ===
+const calendarEl = document.getElementById("calendar");
+if (calendarEl) {
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     height: 'auto',
+    contentHeight: 600, // Ensures space
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -108,7 +110,7 @@ loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGt
     eventTextColor: "#fff"
   });
   calendar.render();
-});
+}
 
 // === Load COUNTDOWNS ===
 loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=234415343&single=true&output=csv", rows => {
