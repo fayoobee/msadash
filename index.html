@@ -2,45 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MSA Marketing Command Center</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MSA Marketing Command Center</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="icon" href="msa_logo.png" type="image/png" />
+  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Montserrat&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
-    <div class="bismillah-wrapper">
-      <img src="bismillah.png" alt="Bismillah" class="bismillah-img" />
+    <div class="bismillah-container">
+      <img src="bismillah.png" alt="Bismillah" id="bismillah-img" />
     </div>
-    <img id="logo" src="msa_logo.png" alt="MSA Logo" />
-    <h1>UTMMSA 2025–2026</h1>
-    <h2 class="title">Marketing Command Center</h2>
-    <p class="ayah">"And say, 'Do [as you will], for Allah will see your deeds, and [so will] His Messenger and the believers..." 
-      <span class="citation">(Surah At-Tawbah 9:105)</span>
-    </p>
-    <button id="toggle-mode">Toggle Night Mode</button>
+    <img src="msa_logo.png" id="logo" alt="UTMMSA Logo" />
+    <h2 class="title">UTMMSA 2025–2026</h2>
+    <p class="ayah">وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ</p>
+    <p class="citation">— Surat At-Tawbah, 9:105</p>
+    <button id="toggle-mode">🌙 Toggle Night Mode</button>
   </header>
 
-  <section>
-    <button class="collapsible">🗂️ Task Overview</button>
-    <div class="content" id="task-container">Loading tasks...</div>
+  <main>
+    <div class="collapsibles">
+      <button class="collapsible">🛠️ Tasks</button>
+      <div class="content" id="task-container">Loading tasks...</div>
 
-    <button class="collapsible">⏳ Countdowns</button>
-    <div class="content" id="countdowns">Loading countdowns...</div>
+      <button class="collapsible">⏳ Countdowns</button>
+      <div class="content" id="countdowns">Loading countdowns...</div>
 
-    <button class="collapsible">👥 Team Roles</button>
-    <div class="content" id="team-roles">Loading team...</div>
+      <button class="collapsible">👥 Team Roles</button>
+      <div class="content" id="team-roles">Loading team...</div>
 
-    <button class="collapsible">📎 Quick Links</button>
-    <div class="content" id="quick-links">
-      <a class="link-button" href="https://www.lensbridge.tech/" target="_blank">🌐 LensBridge</a>
-      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank">📘 MSA General Notion</a>
-      <a class="link-button" href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank">📝 Caption Bank & Branding Guide</a>
-      <a class="link-button" href="https://www.utm.utoronto.ca/registrar/dates" target="_blank">📅 UTM Important Dates</a>
-      <a class="link-button" href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">🗓️ Shared Marketing Calendar</a>
+      <button class="collapsible">🔗 Quick Links</button>
+      <div class="content">
+        <a class="link-button" href="https://www.lensbridge.tech/" target="_blank">🔍 LensBridge</a>
+        <a class="link-button" href="https://www.notion.so/utmmsa2023-24/25-26-20793a1f50b3802fa699ea4681c955b5" target="_blank">📚 MSA Notion</a>
+        <a class="link-button" href="https://www.notion.so/utmmsa2023-24/Marketing-20793a1f50b38177a868e8bf46ba31ad" target="_blank">📁 Marketing Notion</a>
+        <a class="link-button" href="https://www.utm.utoronto.ca/registrar/dates" target="_blank">📅 UTM Important Dates</a>
+        <a class="link-button" href="https://calendar.google.com/calendar/u/0?cid=MWQwNDI2ODYwNzkwZWE5ODk1ZGQ3OWZjZTk5MTg0MmFlOWFhNDkyODM1NDJiNzJmMzg2MzJjM2Y3OWZmYjI5ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">🗓️ Shared Calendar</a>
+      </div>
     </div>
-  </section>
+  </main>
 
-  <script src="script.js"></script>
+  <footer>
+    <p>Made with ❤️ for UTMMSA</p>
+  </footer>
 </body>
 </html>
