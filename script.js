@@ -148,4 +148,37 @@ function loadTeamRoles() {
       container.appendChild(div);
     });
   });
+
+  // === Render Calendar Events ===
+const calendarEl = document.getElementById("calendar");
+if (calendarEl) {
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    height: 'auto',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,listWeek'
+    },
+    events: tasksByDept
+      ? Object.values(tasksByDept).flat().map(task => ({
+          title: `${task.task} (${task.assignedTo})`,
+          start: new Date(task.due),
+          description: task.details || '',
+        }))
+      : [],
+    eventColor: "#0077b6",
+    eventTextColor: "#ffffff",
+    eventDisplay: 'block',
+    eventDidMount: function(info) {
+      const tooltip = document.createElement("div");
+      tooltip.innerHTML = info.event.extendedProps.description;
+      tooltip.className = "tooltip";
+      info.el.appendChild(tooltip);
+    }
+  });
+
+  calendar.render();
+}
+
 }
