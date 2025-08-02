@@ -1,3 +1,4 @@
+script.js
 // Wait for DOM to fully load
 document.addEventListener("DOMContentLoaded", () => {
   toggleCollapsibles();
