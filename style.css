@@ -9,12 +9,26 @@ body {
 
 header {
   text-align: center;
-  padding: 20px 10px 10px 10px;
+  padding: 20px 10px;
+}
+
+.bismillah-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bismillah-img {
+  max-width: 280px;
+  height: auto;
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg);
+  transition: filter 0.5s ease;
 }
 
 #logo {
   width: 120px;
   height: auto;
+  margin-top: 10px;
 }
 
 header h1 {
@@ -29,32 +43,23 @@ header h2.title {
   margin: 5px 0;
 }
 
-.bismillah {
-  font-size: 42px;
-  font-family: "Amiri", serif;
-  color: #002855;
-  margin-bottom: 10px;
-  transition: color 0.5s ease;
-}
-
 .ayah {
   font-style: italic;
   font-size: 16px;
   background-color: gold;
-  padding: 5px 10px;
+  padding: 8px 12px;
   border-radius: 8px;
   display: inline-block;
-  margin: 10px 0;
+  margin: 10px auto;
   color: #002855;
+  max-width: 90%;
   transition: all 0.5s ease;
 }
 
 .citation {
   font-size: 14px;
-}
-
-.collapsibles {
-  margin: 20px;
+  font-style: normal;
+  margin-left: 8px;
 }
 
 button.collapsible,
@@ -72,7 +77,6 @@ button.collapsible,
   transition: all 0.3s ease;
   border-radius: 12px;
   margin-bottom: 10px;
-  box-shadow: 0 0 0 transparent;
 }
 
 button.collapsible:hover,
@@ -111,9 +115,9 @@ button.collapsible:hover,
 
 .priority-badge {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 8px;
   padding: 4px 12px;
-  border-radius: 15px;
+  border-radius: 14px;
   font-size: 14px;
   font-weight: bold;
 }
@@ -133,7 +137,19 @@ button.collapsible:hover,
   color: white;
 }
 
-/* Night Mode Styling */
+.link-button {
+  background-color: gold;
+  color: #002855;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+/* Night Mode */
 .night-mode {
   background-color: #001f3f;
   color: white;
@@ -170,25 +186,11 @@ button.collapsible:hover,
   background-color: #0a1c33;
 }
 
-.night-mode .bismillah {
-  color: white;
+.night-mode .bismillah-img {
+  filter: invert(100%) brightness(300%);
 }
 
 .night-mode .ayah {
-  background-color: #66aaff;
+  background-color: #001f4d;
   color: white;
 }
-
-.link-button {
-  background-color: gold;
-  color: #002855;
-  border-radius: 20px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-
