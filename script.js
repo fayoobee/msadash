@@ -1,4 +1,3 @@
-script.js
 // Wait for DOM to fully load
 document.addEventListener("DOMContentLoaded", () => {
   toggleCollapsibles();
@@ -6,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadTasks();
   loadCountdowns();
   loadTeamRoles();
-  loadCalendar(); // NEW
+  loadCalendar();
 });
 
 // Toggle collapsibles
@@ -89,8 +88,7 @@ function loadTasks() {
         dept: row[deptIdx] || "General",
         details: row[detailsIdx] || "No details",
         category: row[categoryIdx] || "Uncategorized",
-        priority: row[priorityIdx] || "Medium",
-        cycle: cycle
+        priority: row[priorityIdx] || "Medium"
       });
     });
 
@@ -183,3 +181,4 @@ function loadCalendar() {
     calendar.render();
   });
 }
+
