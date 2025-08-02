@@ -169,6 +169,37 @@ button.collapsible:hover,
   background-color: #0a1c33;
 }
 
+#calendar {
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Dark Mode Calendar */
+.night-mode #calendar {
+  background-color: #003366;
+  color: white;
+}
+
+.tooltip {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  font-size: 12px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  white-space: pre-wrap;
+}
+
+.fc-event:hover .tooltip {
+  display: block;
+}
+
+
 footer {
   text-align: center;
   padding: 20px;
