@@ -208,5 +208,20 @@ footer {
   #calendar {
     font-size: 12px;
   }
+  .progress-container {
+  background-color: #ddd;
+  border-radius: 12px;
+  height: 10px;
+  width: 100%;
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.4s ease-in-out;
+}
+
 }
 
