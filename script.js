@@ -72,6 +72,7 @@ function loadTasks() {
     const deptIdx = headers.indexOf("department");
     const detailsIdx = headers.indexOf("details");
     const priorityIdx = headers.indexOf("priority");
+    const cycleIdx = headers.indexOf("cycle");
     const categoryIdx = headers.indexOf("category");
 
     const tasksByCycle = {};
@@ -88,6 +89,7 @@ function loadTasks() {
         details: row[detailsIdx] || "No details",
         category: row[categoryIdx] || "Uncategorized",
         priority: row[priorityIdx] || "Medium",
+        cycle: cycle
       });
     });
 
