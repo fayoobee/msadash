@@ -56,6 +56,38 @@ function loadCSV(url, callback) {
     });
 }
 
+// === Render Calendar Events ===
+const calendarEl = document.getElementById("calendar");
+if (calendarEl) {
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    height: 'auto',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,listWeek'
+    },
+    events: tasksByDept
+      ? Object.values(tasksByDept).flat().map(task => ({
+          title: `${task.task} (${task.assignedTo})`,
+          start: new Date(task.due),
+          description: task.details || '',
+        }))
+      : [],
+    eventColor: "#0077b6",
+    eventTextColor: "#ffffff",
+    eventDisplay: 'block',
+    eventDidMount: function(info) {
+      const tooltip = document.createElement("div");
+      tooltip.innerHTML = info.event.extendedProps.description;
+      tooltip.className = "tooltip";
+      info.el.appendChild(tooltip);
+    }
+  });
+
+  calendar.render();
+}
+
 // === Load TASKS grouped by cycle ===
 function loadTasks() {
   const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSGgYOn6rf3TCHQ0IWTBuGtjxLGNrSIgcXoxnOGT8bKN6c4BRmULTI-A7alSK1XtJVMFsFS3MEuKcs9/pub?gid=31970795&single=true&output=csv";
@@ -148,37 +180,4 @@ function loadTeamRoles() {
       container.appendChild(div);
     });
   });
-
-  // === Render Calendar Events ===
-const calendarEl = document.getElementById("calendar");
-if (calendarEl) {
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    height: 'auto',
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,listWeek'
-    },
-    events: tasksByDept
-      ? Object.values(tasksByDept).flat().map(task => ({
-          title: `${task.task} (${task.assignedTo})`,
-          start: new Date(task.due),
-          description: task.details || '',
-        }))
-      : [],
-    eventColor: "#0077b6",
-    eventTextColor: "#ffffff",
-    eventDisplay: 'block',
-    eventDidMount: function(info) {
-      const tooltip = document.createElement("div");
-      tooltip.innerHTML = info.event.extendedProps.description;
-      tooltip.className = "tooltip";
-      info.el.appendChild(tooltip);
-    }
-  });
-
-  calendar.render();
-}
-
 }
