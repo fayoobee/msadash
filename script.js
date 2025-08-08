@@ -110,7 +110,7 @@ function loadTasks() {
             Assigned to: ${task.assignedTo}<br>
             Due: ${task.due}<br>
             Progress: ${task.progress}<br>
-            <em>Details:</em> ${task.details}<br>
+            <em>Details:</em> ${task.details.replace(/\n/g, "<br>")}<br>
             <div class="priority-badge ${priorityClass}">Priority: ${task.priority}</div>
           </div>
         `;
